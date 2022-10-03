@@ -1,4 +1,5 @@
 {
+  "homepage":"http://sheila-rugut.github.io/Bott-Battlr-codechallenge",
   "name": "react-hooks-bot-battlr-code-challenge",
   "version": "0.1.0",
   "private": true,
@@ -14,6 +15,8 @@
   },
   "scripts": {
     "start": "PORT=8000 react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "server": "json-server --watch db.json -p 8002"
   },
   "eslintConfig": {
