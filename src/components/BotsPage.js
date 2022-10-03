@@ -24,15 +24,14 @@ function BotsPage() {
       setArmy([...army, bot])
     }
   }
-  function deleteBot(botInArmy) {
-    if (bots.find((bot) => bot === botInArmy)) {
-      setBots(bots.filter((bot) => bot !== botInArmy));
-      setArmy(army.filter((bot) => bot !== botInArmy));
-      fetch(`http://localhost:8002/bots/${botInArmy.id}`, {
+  function deleteBot(botInCollection) {
+    if (bots.find((bot) => bot === botInCollection)) {
+      setBots(bots.filter((bot) => bot !== botInCollection));
+      setArmy(army.filter((bot) => bot !== botInCollection));
+      fetch(`http://localhost:8002/bots/${botInCollection.id}`, {
         method: 'DELETE'
       });
     }
-    console.log(army);
   }
   return (
     <div>
