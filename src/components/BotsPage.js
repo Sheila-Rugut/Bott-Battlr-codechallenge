@@ -18,17 +18,29 @@ function BotsPage() {
   }, []);
   function addArmy(bot){
     const botInArmy = army.find((selectedBot) => {
-      return selectedBot.id === bot.id;
+      return selectedBot === bot;
     });
     if (!botInArmy) {
       setArmy([...army, bot])
     }
   }
+  function deleteBot(botInArmy) {
+    if (bots.find((bot) => bot === botInArmy)) {
+      setBots(bots.filter((bot) => bot !== botInArmy));
+      setArmy(army.filter((bot) => bot !== botInArmy));
+      fetch(`http://localhost:8002/bots/${botInArmy.id}`, {
+        method: 'DELETE'
+      });
+    }
+    console.log(army);
+  }
   return (
     <div>
-      <YourBotArmy army={army} />
+      <YourBotArmy army={army}
+      deleteBot={deleteBot} />
       <BotCollection bots={bots}
-      addArmy={addArmy}/>
+      addArmy={addArmy}
+      deleteBot={deleteBot}/>
     </div>
   )
 }
