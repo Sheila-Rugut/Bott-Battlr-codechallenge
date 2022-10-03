@@ -6,6 +6,9 @@ import React,{useState,useEffect}from 'react'
 function BotsPage() {
   //start here with your code for step one
   const[bots, setBots]=useState([])
+  const [army, setArmy] = useState([]);
+
+  
   useEffect(()=>{
     fetch("http://localhost:8002/bots")
         .then((r) => r.json())
@@ -13,10 +16,19 @@ function BotsPage() {
           console.log(bots)
           setBots(bots)});
   }, []);
+  function addArmy(bot){
+    const botInArmy = army.find((selectedBot) => {
+      return selectedBot.id === bot.id;
+    });
+    if (!botInArmy) {
+      setArmy([...army, bot])
+    }
+  }
   return (
     <div>
-      <YourBotArmy />
-      <BotCollection bots={bots}/>
+      <YourBotArmy army={army} />
+      <BotCollection bots={bots}
+      addArmy={addArmy}/>
     </div>
   )
 }
