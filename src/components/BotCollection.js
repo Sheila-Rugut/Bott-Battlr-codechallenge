@@ -1,24 +1,20 @@
-import React from "react";
-import BotCard from "./BotCard";
+import React from 'react';
+import BotCard from './BotCard';
 
-
-
-function BotCollection({bots, addArmy, deleteBot}) {
+function BotCollection({ bots, addBotToArmy, deleteBot }) {
   // Your code here
- const addBots=bots.map((bots)=>{
-  return <BotCard 
-  bot={bots} 
-  key={bots.id} 
-  clickAdd={addArmy}
-  clickDelete={deleteBot} />
- })
-return (
-    <div className="ui four column grid">
-      <div className="row">
-        {/*...and here..*/}
-        Collection of all bots
-        {addBots}
-      </div>
+  const mappedBots = bots.map((bot) => {
+    return <BotCard 
+    bot={bot} 
+    key={bot.id} 
+    clickAdd={addBotToArmy} 
+    clickDelete={deleteBot}/>;
+  });
+
+  return (
+    <div className='ui four column grid'>
+      Collection of all bots
+      <div className='row'>{mappedBots}</div>
     </div>
   );
 }

@@ -1,23 +1,25 @@
-import React from "react";
-import BotCard from "./BotCard";
+import React from 'react';
+import BotCard from './BotCard';
 
-function YourBotArmy({army, deleteBot}) {
+function YourBotArmy({ army, deleteBot, deleteArmy, }) {
   //your bot army code here...
- const addBot=army.map((bot)=>{
+  const botArmy = army.map((bot) => {
+    return (
+      <BotCard
+        key={bot.id}
+        bot={bot}
+        clickAdd={deleteArmy}
+        clickDelete={deleteBot}
+      />
+    );
+  });
   return (
-  <BotCard
-   key={bot.id}
-    bot={bot}
-     deleteBot={deleteBot}  />
-  )
- })
-  return (
-    <div className="ui segment inverted olive bot-army" >
-      <div className="ui five column grid" >
-        <div className="row bot-army-row" >
+    <div className='ui segment inverted olive bot-army'>
+      <div className='ui five column grid'>
+        Your Bot Army
+        <div className='row bot-army-row'>
           {/*...and here...*/}
-          Your Bot Army
-          {addBot}
+          {botArmy}
         </div>
       </div>
     </div>
